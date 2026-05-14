@@ -1,0 +1,77 @@
+package com.example.kavyakanaja.data
+
+import com.example.kavyakanaja.model.Poem
+import com.example.kavyakanaja.model.Poet
+
+object PoetryData {
+    val poems = listOf(
+        Poem("VACHANA 1", "BASAVANNA", "ಕಾಯಕವೇ ಕೈಲಾಸ", "Work is worship. Doing work sincerely is devotion.", "audio1.mp3"),
+        Poem("VACHANA 2", "AKKA MAHADEVI", "ನನ್ನೊಳಗಿರುವ ಶಿವನೇ ಸತ್ಯ", "The divine truth lives within us.", "audio2.mp3"),
+        Poem("VACHANA 3", "ALLAMA PRABHU", "ಮನವೇ ದೇವಾಲಯ", "The human mind is the true temple.", "audio3.mp3"),
+        Poem("VACHANA 4", "KANAKADASA", "ಎಲ್ಲರೂ ಒಂದೇ", "All humans are equal in life.", "audio4.mp3"),
+        Poem("VACHANA 5", "PURANDARA DASARU", "ಭಕ್ತಿ ಜೀವನದ ಬೆಳಕು", "Devotion brings light to life.", "audio5.mp3"),
+        Poem("VACHANA 6", "BASAVANNA", "ಸತ್ಯವೇ ಶಿವ", "Truth itself is divine.", "audio6.mp3"),
+        Poem("VACHANA 7", "AKKA MAHADEVI", "ಪ್ರೀತಿಯೇ ಪರಮಾತ್ಮ", "Love is the highest form of God.", "audio7.mp3"),
+        Poem("VACHANA 8", "ALLAMA PRABHU", "ಜ್ಞಾನವೇ ದಾರಿ", "Knowledge is the path to wisdom.", "audio8.mp3"),
+        Poem("VACHANA 9", "KANAKADASA", "ಮಾನವತೆ ಮಹತ್ವ", "Humanity is the greatest value.", "audio9.mp3"),
+        Poem("VACHANA 10", "PURANDARA DASARU", "ಹರಿನಾಮವೇ ಆಶ್ರಯ", "The name of God gives peace.", "audio10.mp3"),
+        Poem("VACHANA 11", "BASAVANNA", "ಒಳ್ಳೆಯ ಕೆಲಸ ಅಮೂಲ್ಯ", "Good deeds are priceless.", "audio11.mp3"),
+        Poem("VACHANA 12", "AKKA MAHADEVI", "ಆತ್ಮವೇ ಬೆಳಕು", "The soul is the true light.", "audio12.mp3"),
+        Poem("VACHANA 13", "ALLAMA PRABHU", "ಮನಶಾಂತಿ ಮಹತ್ವ", "Peace of mind is important.", "audio13.mp3"),
+        Poem("VACHANA 14", "KANAKADASA", "ಕರುಣೆಯೇ ಧರ್ಮ", "Kindness is true religion.", "audio14.mp3"),
+        Poem("VACHANA 15", "PURANDARA DASARU", "ಭಜನೆಯೇ ಭಕ್ತಿ", "Prayer is devotion.", "audio15.mp3"),
+        Poem("VACHANA 16", "BASAVANNA", "ಶ್ರಮವೇ ಶಕ್ತಿ", "Hard work is strength.", "audio16.mp3"),
+        Poem("VACHANA 17", "AKKA MAHADEVI", "ಮನದ ಶುದ್ಧತೆ ಮುಖ್ಯ", "Purity of heart matters most.", "audio17.mp3"),
+        Poem("VACHANA 18", "ALLAMA PRABHU", "ಜೀವನವೇ ಪಾಠ", "Life itself is a lesson.", "audio18.mp3"),
+        Poem("VACHANA 19", "KANAKADASA", "ನಂಬಿಕೆಯೇ ಬದುಕು", "Faith gives meaning to life.", "audio19.mp3"),
+        Poem("VACHANA 20", "PURANDARA DASARU", "ದೇವರ ನೆನಪು ಶಾಂತಿ", "Remembering God brings peace.", "audio20.mp3"),
+        Poem("VACHANA 21", "BASAVANNA", "ಸೇವೆಯೇ ಪೂಜೆ", "Service to others is worship.", "audio21.mp3"),
+        Poem("VACHANA 22", "AKKA MAHADEVI", "ಪ್ರೀತಿಯಲ್ಲಿ ಶಕ್ತಿ ಇದೆ", "There is power in love.", "audio22.mp3"),
+        Poem("VACHANA 23", "ALLAMA PRABHU", "ಜ್ಞಾನದಿಂದ ಬೆಳಕು", "Knowledge brings light.", "audio23.mp3"),
+        Poem("VACHANA 24", "KANAKADASA", "ಒಳ್ಳೆಯ ಮನಸ್ಸು ಅಮೂಲ್ಯ", "A good heart is priceless.", "audio24.mp3"),
+        Poem("VACHANA 25", "PURANDARA DASARU", "ಸಂಗೀತವೇ ಭಕ್ತಿ", "Music is devotion.", "audio25.mp3"),
+        Poem("VACHANA 26", "BASAVANNA", "ಧರ್ಮವೇ ದಾರಿ", "Righteousness is the right path.", "audio26.mp3"),
+        Poem("VACHANA 27", "AKKA MAHADEVI", "ಆತ್ಮಜ್ಞಾನವೇ ಮಹತ್ವ", "Self-realization is important.", "audio27.mp3"),
+        Poem("VACHANA 28", "ALLAMA PRABHU", "ಮನವೇ ಲೋಕ", "The mind creates the world.", "audio28.mp3"),
+        Poem("VACHANA 29", "KANAKADASA", "ಸತ್ಯಕ್ಕೆ ಜಯ", "Truth always wins.", "audio29.mp3"),
+        Poem("VACHANA 30", "PURANDARA DASARU", "ಭಕ್ತಿ ಮನಶಾಂತಿ ಕೊಡುತ್ತದೆ", "Devotion gives peace of mind.", "audio30.mp3"),
+        Poem("VACHANA 31", "BASAVANNA", "ಒಗ್ಗಟ್ಟೇ ಶಕ್ತಿ", "Unity is strength.", "audio31.mp3"),
+        Poem("VACHANA 32", "AKKA MAHADEVI", "ದಯೆಯೇ ದೇವರು", "Compassion is God.", "audio32.mp3"),
+        Poem("VACHANA 33", "ALLAMA PRABHU", "ಜೀವನದಲ್ಲಿ ಧೈರ್ಯ ಬೇಕು", "Life needs courage.", "audio33.mp3"),
+        Poem("VACHANA 34", "KANAKADASA", "ಶಾಂತಿಯೇ ಸುಖ", "Peace is happiness.", "audio34.mp3"),
+        Poem("VACHANA 35", "PURANDARA DASARU", "ಹರಿ ಸ್ಮರಣೆ ಉತ್ತಮ", "Remembering God is good.", "audio35.mp3"),
+        Poem("VACHANA 36", "BASAVANNA", "ಸಹನೆಯೇ ಮಹತ್ವ", "Patience is valuable.", "audio36.mp3"),
+        Poem("VACHANA 37", "AKKA MAHADEVI", "ಮನದ ನಂಬಿಕೆ ಶಕ್ತಿ", "Confidence is strength.", "audio37.mp3"),
+        Poem("VACHANA 38", "ALLAMA PRABHU", "ಜ್ಞಾನವೇ ಸಂಪತ್ತು", "Knowledge is wealth.", "audio38.mp3"),
+        Poem("VACHANA 39", "KANAKADASA", "ಪ್ರೀತಿ ಜೀವನದ ಸೌಂದರ್ಯ", "Love is the beauty of life.", "audio39.mp3"),
+        Poem("VACHANA 40", "PURANDARA DASARU", "ಭಕ್ತಿ ಜೀವನದ ಬಲ", "Devotion strengthens life.", "audio40.mp3"),
+        Poem("VACHANA 41", "BASAVANNA", "ನ್ಯಾಯವೇ ಸತ್ಯ", "Justice is truth.", "audio41.mp3"),
+        Poem("VACHANA 42", "AKKA MAHADEVI", "ದೇವರು ಮನದೊಳಗೆ", "God lives in the heart.", "audio42.mp3"),
+        Poem("VACHANA 43", "ALLAMA PRABHU", "ನಿಶ್ಶಬ್ದವೇ ಜ್ಞಾನ", "Silence is wisdom.", "audio43.mp3"),
+        Poem("VACHANA 44", "KANAKADASA", "ಒಳ್ಳೆಯ ಮಾತು ಅಮೂಲ್ಯ", "Kind words are precious.", "audio44.mp3"),
+        Poem("VACHANA 45", "PURANDARA DASARU", "ದೇವರ ಭಕ್ತಿ ಶಾಂತಿ", "Devotion to God gives peace.", "audio45.mp3"),
+        Poem("VACHANA 46", "BASAVANNA", "ನಿಸ್ವಾರ್ಥ ಸೇವೆ ಶ್ರೇಷ್ಠ", "Selfless service is great.", "audio46.mp3"),
+        Poem("VACHANA 47", "AKKA MAHADEVI", "ಮನದ ಪ್ರಾರ್ಥನೆ ಶಕ್ತಿ", "Prayer from the heart has power.", "audio47.mp3"),
+        Poem("VACHANA 48", "ALLAMA PRABHU", "ಆತ್ಮಜ್ಞಾನವೇ ಮುಕ್ತಿ", "Self-knowledge leads to freedom.", "audio48.mp3"),
+        Poem("VACHANA 49", "KANAKADASA", "ದಯೆಯಿಂದ ಬದುಕು ಸುಂದರ", "Life becomes beautiful with kindness.", "audio49.mp3"),
+        Poem("VACHANA 50", "PURANDARA DASARU", "ಹರಿನಾಮವೇ ಜೀವನ", "God's name is life itself.", "audio50.mp3")
+    )
+
+    val poetsList = listOf(
+        Poet("Basavanna", "12th-century philosopher and social reformer.", "Famous for Vachanas promoting equality."),
+        Poet("Akka Mahadevi", "Great Kannada poet and devotee of Lord Shiva.", "Known for spiritual and philosophical vachanas."),
+        Poet("Allama Prabhu", "Mystic saint and poet of the 12th century.", "Deep philosophical Vachanas."),
+        Poet("Sarvajna", "Kannada poet known for his Tripadis.", "Writings on ethics and society."),
+        Poet("Kanaka Dasa", "Poet, philosopher, and musician.", "Famous Haridasa compositions."),
+        Poet("Purandara Dasa", "Founding father of Carnatic music.", "Vast collection of devotional songs."),
+        Poet("Kuvempu", "National poet of India from Karnataka.", "Famous for Ramayana Darshanam."),
+        Poet("D. R. Bendre", "Celebrated Kannada poet and Jnanpith winner.", "Lyrical poetry like Nakutanti."),
+        Poet("Masti Venkatesha Iyengar", "Father of Kannada short stories.", "Famous works like Chikkaveera Rajendra."),
+        Poet("Gopalakrishna Adiga", "Pioneer of the Navyya movement in Kannada.", "Reflective poetry like Chande Maddale."),
+        Poet("U. R. Ananthamurthy", "Renowned writer and critic.", "Famous novel Samskara."),
+        Poet("Shivaram Karanth", "Polymath and Jnanpith awardee.", "Epic novels like Mookajjiya Kanasugalu."),
+        Poet("Girish Karnad", "Legendary playwright and actor.", "Plays like Tughlaq and Hayavadana."),
+        Poet("Chandrashekhara Kambara", "Poet, playwright and folklorist.", "Rich folklore-inspired works."),
+        Poet("Vaidehi", "Acclaimed writer known for her short stories.", "Focus on women's lives and social issues.")
+    )
+}

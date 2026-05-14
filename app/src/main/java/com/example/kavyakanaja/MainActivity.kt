@@ -1,6 +1,5 @@
 package com.example.kavyakanaja
 
-import android.content.Context
 import android.media.MediaPlayer
 import android.os.Bundle
 import androidx.activity.ComponentActivity
@@ -35,10 +34,15 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
+import android.widget.Toast
+import com.example.kavyakanaja.data.PoetryData
+import com.example.kavyakanaja.utils.getAudioRes
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
+import kotlinx.coroutines.launch
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -50,51 +54,7 @@ class MainActivity : ComponentActivity() {
     }
 }
 
-data class Poem(
-    val title: String,
-    val author: String,
-    val content: String,
-    val meaning: String,
-    val audio: String
-)
 
-val poems = listOf(
-    Poem("Vachana 1", "Basavanna", "ಕಾಯಕವೇ ಕೈಲಾಸ", "Work is worship. Doing work sincerely is devotion.", "audio1.mp3"),
-    Poem("Vachana 2", "Akka Mahadevi", "ಲೋಕದ ಚೇಷ್ಟೆಗೆ ರವಿ ಬೀಜವಾದಂತೆ", "Just as the sun is the cause of the world's activities.", "audio2.mp3"),
-    Poem("Vachana 3", "Allama Prabhu", "ಕಾಣಬಾರದ ಹೊಳಹಿನೊಳಗೆ", "Within the light that cannot be seen.", "audio3.mp3"),
-    Poem("Vachana 4", "Sarvajna", "ಜ್ಞಾನಿಯಾದವನು ಜಗಕೆ ಬೆಳಕು", "A wise person is a light to the world.", "audio4.mp3"),
-    Poem("Vachana 5", "Kanaka Dasa", "ನಾನು ಪರೀಕ್ಷಿಸಿ ನೋಡಿದೆ", "I have examined and seen.", "audio5.mp3"),
-    Poem("Vachana 6", "Purandara Dasa", "ಕಲ್ಯಾಣಪುರದಲಿ ನೆಲೆಸಿದ ವಿಠಲ", "Vitthala who resided in Kalyanapura.", "audio6.mp3"),
-    Poem("Vachana 7", "Kuvempu", "ಓ ನನ್ನ ಚೇತನ ಆಗು ನೀ ಅನಿಕೇತನ", "O my spirit, become unhoused.", "audio7.mp3"),
-    Poem("Vachana 8", "D. R. Bendre", "ಬಾರೋ ಸಾಧನಕೇರಿ ಗೆ", "Come to Sadhanakeri.", "audio1.mp3"),
-    Poem("Vachana 9", "Masti Venkatesha Iyengar", "ಸತ್ಯದ ಹಾದಿಯಲಿ", "On the path of truth.", "audio2.mp3"),
-    Poem("Vachana 10", "Gopalakrishna Adiga", "ಯಾವ ಕಾಲದ ಶಾಸ್ತ್ರ", "Which era's scriptures?", "audio3.mp3"),
-    Poem("Vachana 11", "U. R. Ananthamurthy", "ಸಂಸ್ಕಾರದ ನೆರಳು", "The shadow of culture.", "audio4.mp3"),
-    Poem("Vachana 12", "Shivaram Karanth", "ಬೆಟ್ಟದ ಜೀವ", "The life of the mountain.", "audio5.mp3"),
-    Poem("Vachana 13", "Girish Karnad", "ತುಘಲಕ್", "Tughlaq.", "audio6.mp3"),
-    Poem("Vachana 14", "Chandrashekhara Kambara", "ಜೋಕುಮಾರಸ್ವಾಮಿ", "Jokumaraswamy.", "audio7.mp3"),
-    Poem("Vachana 15", "Vaidehi", "ಅಸ್ಪೃಶ್ಯರು", "The Untouchables.", "audio1.mp3")
-)
-
-data class Poet(val name: String, val bio: String, val works: String)
-
-val poetsList = listOf(
-    Poet("Basavanna", "12th-century philosopher and social reformer.", "Famous for Vachanas promoting equality."),
-    Poet("Akka Mahadevi", "Great Kannada poet and devotee of Lord Shiva.", "Known for spiritual and philosophical vachanas."),
-    Poet("Allama Prabhu", "Mystic saint and poet of the 12th century.", "Deep philosophical Vachanas."),
-    Poet("Sarvajna", "Kannada poet known for his Tripadis.", "Writings on ethics and society."),
-    Poet("Kanaka Dasa", "Poet, philosopher, and musician.", "Famous Haridasa compositions."),
-    Poet("Purandara Dasa", "Founding father of Carnatic music.", "Vast collection of devotional songs."),
-    Poet("Kuvempu", "National poet of India from Karnataka.", "Famous for Ramayana Darshanam."),
-    Poet("D. R. Bendre", "Celebrated Kannada poet and Jnanpith winner.", "Lyrical poetry like Nakutanti."),
-    Poet("Masti Venkatesha Iyengar", "Father of Kannada short stories.", "Famous works like Chikkaveera Rajendra."),
-    Poet("Gopalakrishna Adiga", "Pioneer of the Navyya movement in Kannada.", "Reflective poetry like Chande Maddale."),
-    Poet("U. R. Ananthamurthy", "Renowned writer and critic.", "Famous novel Samskara."),
-    Poet("Shivaram Karanth", "Polymath and Jnanpith awardee.", "Epic novels like Mookajjiya Kanasugalu."),
-    Poet("Girish Karnad", "Legendary playwright and actor.", "Plays like Tughlaq and Hayavadana."),
-    Poet("Chandrashekhara Kambara", "Poet, playwright and folklorist.", "Rich folklore-inspired works."),
-    Poet("Vaidehi", "Acclaimed writer known for her short stories.", "Focus on women's lives and social issues.")
-)
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -103,6 +63,9 @@ fun KavyaKanajaApp() {
     val bgGradient = Brush.verticalGradient(listOf(Color(0xFF1A237E), Color(0xFF6A1B9A)))
     val navBackStackEntry by navController.currentBackStackEntryAsState()
     val currentRoute = navBackStackEntry?.destination?.route
+
+    val drawerState = rememberDrawerState(initialValue = DrawerValue.Closed)
+    val scope = rememberCoroutineScope()
 
     val infiniteTransition = rememberInfiniteTransition(label = "logoAnimation")
     val scale by infiniteTransition.animateFloat(
@@ -124,85 +87,273 @@ fun KavyaKanajaApp() {
         label = "rotation"
     )
 
-    Box(modifier = Modifier.fillMaxSize().background(bgGradient)) {
-        Column(modifier = Modifier.fillMaxSize().padding(top = 40.dp)) {
-            // Header
-            Row(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(16.dp),
-                verticalAlignment = Alignment.CenterVertically,
-                horizontalArrangement = Arrangement.SpaceBetween
-            ) {
-                // LEFT SIDE: Back Button / Logo
-                Box(modifier = Modifier.size(40.dp), contentAlignment = Alignment.Center) {
-                    if (currentRoute == "poets") {
-                        IconButton(onClick = { navController.popBackStack() }, modifier = Modifier.size(26.dp)) {
-                            Icon(
-                                Icons.AutoMirrored.Filled.ArrowBack,
-                                contentDescription = "Back",
-                                tint = Color.White,
-                                modifier = Modifier.size(24.dp)
-                            )
+    ModalNavigationDrawer(
+        drawerState = drawerState,
+        drawerContent = {
+            DrawerMenu(
+                navController = navController,
+                onSettingsClick = { navController.navigate("settings") },
+                onCloseDrawer = { scope.launch { drawerState.close() } }
+            )
+        },
+        gesturesEnabled = currentRoute != "login" && currentRoute != "register"
+    ) {
+        Box(modifier = Modifier.fillMaxSize().background(bgGradient)) {
+            Column(modifier = Modifier.fillMaxSize().padding(top = if (currentRoute == "login" || currentRoute == "register") 0.dp else 40.dp)) {
+                // Header
+                if (currentRoute != "login" && currentRoute != "register") {
+                    Row(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .padding(16.dp),
+                        verticalAlignment = Alignment.CenterVertically,
+                        horizontalArrangement = Arrangement.SpaceBetween
+                    ) {
+                        // LEFT SIDE: Menu Button or Back Button
+                        Box(modifier = Modifier.size(40.dp), contentAlignment = Alignment.Center) {
+                            if (currentRoute == "poets" || currentRoute == "settings") {
+                                IconButton(onClick = { navController.popBackStack() }, modifier = Modifier.size(26.dp)) {
+                                    Icon(
+                                        Icons.AutoMirrored.Filled.ArrowBack,
+                                        contentDescription = "Back",
+                                        tint = Color.White,
+                                        modifier = Modifier.size(24.dp)
+                                    )
+                                }
+                            } else {
+                                IconButton(onClick = { scope.launch { drawerState.open() } }) {
+                                    Icon(
+                                        imageVector = Icons.Default.Menu,
+                                        contentDescription = "Menu",
+                                        tint = Color.White
+                                    )
+                                }
+                            }
                         }
-                    } else {
-                        Image(
-                            painter = painterResource(id = R.drawable.logo),
-                            contentDescription = "App Logo",
-                            contentScale = ContentScale.FillBounds,
-                            modifier = Modifier
-                                .size(40.dp)
-                                .graphicsLayer(
-                                    scaleX = scale,
-                                    scaleY = scale,
-                                    rotationZ = rotation
-                                )
+
+                        // CENTER: App Title
+                        Text(
+                            text = when (currentRoute) {
+                                "poets" -> "Poet's Corner"
+                                "settings" -> "Settings"
+                                else -> "Kavya Kanaja"
+                            },
+                            fontSize = 22.sp,
+                            fontWeight = FontWeight.Bold,
+                            color = Color.White
                         )
+
+                        // RIGHT SIDE: Profile/Nav / Logo
+                        Box(modifier = Modifier.size(40.dp), contentAlignment = Alignment.Center) {
+                            if (currentRoute == "home") {
+                                IconButton(onClick = { navController.navigate("poets") }, modifier = Modifier.size(26.dp)) {
+                                    Icon(
+                                        Icons.Default.Person,
+                                        contentDescription = "Poets",
+                                        tint = Color.White,
+                                        modifier = Modifier.size(24.dp)
+                                    )
+                                }
+                            } else {
+                                Image(
+                                    painter = painterResource(id = R.drawable.logo),
+                                    contentDescription = "App Logo",
+                                    contentScale = ContentScale.FillBounds,
+                                    modifier = Modifier
+                                        .size(40.dp)
+                                        .graphicsLayer(
+                                            scaleX = scale,
+                                            scaleY = scale,
+                                            rotationZ = rotation
+                                        )
+                                )
+                            }
+                        }
                     }
                 }
 
-                // CENTER: App Title
-                Text(
-                    text = if (currentRoute == "poets") "Poet's Corner" else "Kavya Kanaja",
-                    fontSize = 22.sp,
-                    fontWeight = FontWeight.Bold,
-                    color = Color.White
-                )
-
-                // RIGHT SIDE: Profile/Nav / Logo
-                Box(modifier = Modifier.size(40.dp), contentAlignment = Alignment.Center) {
-                    if (currentRoute == "home") {
-                        IconButton(onClick = { navController.navigate("poets") }, modifier = Modifier.size(26.dp)) {
-                            Icon(
-                                Icons.Default.Person,
-                                contentDescription = "Poets",
-                                tint = Color.White,
-                                modifier = Modifier.size(24.dp)
-                            )
-                        }
-                    } else if (currentRoute == "poets") {
-                        Image(
-                            painter = painterResource(id = R.drawable.logo),
-                            contentDescription = "App Logo",
-                            contentScale = ContentScale.FillBounds,
-                            modifier = Modifier
-                                .size(40.dp)
-                                .graphicsLayer(
-                                    scaleX = scale,
-                                    scaleY = scale,
-                                    rotationZ = rotation
-                                )
-                        )
+                // Main Content Area
+                Box(modifier = Modifier.weight(1f)) {
+                    NavHost(navController = navController, startDestination = "home") {
+                        composable("register") { RegisterScreen(navController) }
+                        composable("login") { LoginScreen(navController) }
+                        composable("home") { PoetryApp() }
+                        composable("poets") { PoetsScreen() }
+                        composable("settings") { SettingsScreen() }
                     }
                 }
             }
+        }
+    }
+}
 
-            // Main Content Area
-            Box(modifier = Modifier.weight(1f)) {
-                NavHost(navController = navController, startDestination = "home") {
-                    composable("home") { PoetryApp() }
-                    composable("poets") { PoetsScreen() }
-                }
+@Composable
+fun RegisterScreen(navController: NavController) {
+    var username by remember { mutableStateOf("") }
+    var email by remember { mutableStateOf("") }
+    var password by remember { mutableStateOf("") }
+    val context = LocalContext.current
+
+    Box(
+        modifier = Modifier
+            .fillMaxSize()
+            .background(Color(0xFFF5F5F5)),
+        contentAlignment = Alignment.Center
+    ) {
+        Column(
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(24.dp),
+            horizontalAlignment = Alignment.CenterHorizontally,
+            verticalArrangement = Arrangement.Center
+        ) {
+            Image(
+                painter = painterResource(id = R.drawable.logo),
+                contentDescription = "Logo",
+                modifier = Modifier
+                    .size(120.dp),
+                contentScale = ContentScale.Fit
+            )
+
+            Spacer(modifier = Modifier.height(20.dp))
+
+            Text(
+                text = "Welcome",
+                fontSize = 30.sp,
+                fontWeight = FontWeight.Bold,
+                color = Color.Black
+            )
+
+            Spacer(modifier = Modifier.height(30.dp))
+
+            OutlinedTextField(
+                value = username,
+                onValueChange = { username = it },
+                label = { Text("Username") },
+                modifier = Modifier.fillMaxWidth(),
+                shape = RoundedCornerShape(14.dp)
+            )
+
+            Spacer(modifier = Modifier.height(14.dp))
+
+            OutlinedTextField(
+                value = email,
+                onValueChange = { email = it },
+                label = { Text("Email") },
+                modifier = Modifier.fillMaxWidth(),
+                shape = RoundedCornerShape(14.dp)
+            )
+
+            Spacer(modifier = Modifier.height(14.dp))
+
+            OutlinedTextField(
+                value = password,
+                onValueChange = { password = it },
+                label = { Text("Password") },
+                modifier = Modifier.fillMaxWidth(),
+                shape = RoundedCornerShape(14.dp)
+            )
+
+            Spacer(modifier = Modifier.height(24.dp))
+
+            Button(
+                onClick = {
+                    if (email.isNotEmpty() && password.isNotEmpty()) {
+                        Toast.makeText(context, "Registration Successful", Toast.LENGTH_SHORT).show()
+                        navController.navigate("login")
+                    } else {
+                        Toast.makeText(context, "Please fill all fields", Toast.LENGTH_SHORT).show()
+                    }
+                },
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .height(55.dp),
+                shape = RoundedCornerShape(16.dp)
+            ) {
+                Text(
+                    text = "Register",
+                    fontSize = 18.sp
+                )
+            }
+        }
+    }
+}
+
+@Composable
+fun LoginScreen(navController: NavController) {
+    var email by remember { mutableStateOf("") }
+    var password by remember { mutableStateOf("") }
+    val context = LocalContext.current
+
+    Box(
+        modifier = Modifier
+            .fillMaxSize()
+            .background(Color(0xFFF5F5F5)),
+        contentAlignment = Alignment.Center
+    ) {
+        Column(
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(24.dp),
+            verticalArrangement = Arrangement.Center,
+            horizontalAlignment = Alignment.CenterHorizontally
+        ) {
+            Image(
+                painter = painterResource(id = R.drawable.logo),
+                contentDescription = "Logo",
+                modifier = Modifier
+                    .size(120.dp),
+                contentScale = ContentScale.Fit
+            )
+
+            Spacer(modifier = Modifier.height(20.dp))
+
+            Text(
+                text = "Login",
+                fontSize = 30.sp,
+                fontWeight = FontWeight.Bold,
+                color = Color.Black
+            )
+
+            Spacer(modifier = Modifier.height(20.dp))
+
+            OutlinedTextField(
+                value = email,
+                onValueChange = { email = it },
+                label = { Text("Email") },
+                modifier = Modifier.fillMaxWidth(),
+                shape = RoundedCornerShape(14.dp)
+            )
+
+            Spacer(modifier = Modifier.height(14.dp))
+
+            OutlinedTextField(
+                value = password,
+                onValueChange = { password = it },
+                label = { Text("Password") },
+                modifier = Modifier.fillMaxWidth(),
+                shape = RoundedCornerShape(14.dp)
+            )
+
+            Spacer(modifier = Modifier.height(24.dp))
+
+            Button(
+                onClick = {
+                    if (email.isNotEmpty() && password.isNotEmpty()) {
+                        Toast.makeText(context, "Login Successful", Toast.LENGTH_SHORT).show()
+                        navController.navigate("home") {
+                            popUpTo("register") { inclusive = true }
+                        }
+                    } else {
+                        Toast.makeText(context, "Please fill all fields", Toast.LENGTH_SHORT).show()
+                    }
+                },
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .height(55.dp),
+                shape = RoundedCornerShape(16.dp)
+            ) {
+                Text("Login", fontSize = 18.sp)
             }
         }
     }
@@ -211,7 +362,7 @@ fun KavyaKanajaApp() {
 @Composable
 fun PoetryApp() {
     var currentIndex by remember { mutableIntStateOf(0) }
-    val poem = poems[currentIndex]
+    val poem = PoetryData.poems[currentIndex]
     val context = LocalContext.current
     var showMeaning by remember { mutableStateOf(false) }
     var mediaPlayer by remember { mutableStateOf<MediaPlayer?>(null) }
@@ -383,7 +534,7 @@ fun PoetryApp() {
                         )
 
                         IconButton(onClick = {
-                            currentIndex = if (currentIndex - 1 < 0) poems.size - 1 else currentIndex - 1
+                            currentIndex = if (currentIndex - 1 < 0) PoetryData.poems.size - 1 else currentIndex - 1
                         }) {
                             Icon(
                                 imageVector = Icons.Default.SkipPrevious,
@@ -422,7 +573,7 @@ fun PoetryApp() {
                         }
 
                         IconButton(onClick = {
-                            currentIndex = (currentIndex + 1) % poems.size
+                            currentIndex = (currentIndex + 1) % PoetryData.poems.size
                         }) {
                             Icon(
                                 imageVector = Icons.Default.SkipNext,
@@ -454,7 +605,7 @@ fun PoetsScreen() {
                 verticalArrangement = Arrangement.spacedBy(16.dp),
                 contentPadding = PaddingValues(bottom = 20.dp)
             ) {
-                items(poetsList) { poet ->
+                items(PoetryData.poetsList) { poet ->
                     Card(
                         modifier = Modifier.fillMaxWidth(),
                         shape = RoundedCornerShape(24.dp),
@@ -493,9 +644,6 @@ fun PoetsScreen() {
     }
 }
 
-fun getAudioRes(context: Context, name: String): Int {
-    return context.resources.getIdentifier(name.substringBefore("."), "raw", context.packageName)
-}
 
 @Preview(showBackground = true)
 @Composable
